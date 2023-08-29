@@ -11,16 +11,16 @@ import java.sql.Date;
 @Setter
 @ToString
 public class Employee {
-        private int id;
-        private String lastName;
-        private String firstName;
-        private Date dateOfBirth;
-        private String address;
-        private String phoneNumber;
-        private String emailAddress;
-        private Date hireDate;
-        private String jobTitle;
-        private Float salary;
-        private int departmentId;
+        private int Id;
+        private String LastName;
+        private String FirstName;
+        private Date DateOfBirth;
+        private String Address;
+        private String PhoneNumber;
+        private String EmailAddress;
+        private Date HireDate;
+        private String JobTitle;
+        private Float Salary;
+        private int DepartmentId;
 
 }
