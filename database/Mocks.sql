@@ -1,1 +1,57 @@
+INSERT INTO departments (id, departmentName, description) VALUES
+(1, 'HR', 'Human Resources Department'),
+(2, 'IT', 'Information Technology Department'),
+(3, 'Sales', 'Sales and Marketing Department'),
+(4, 'Finance', 'Finance and Accounting Department'),
+(5, 'Engineering', 'Engineering and Product Development'),
+(6, 'CustomerService', 'Customer Service Department'),
+(7, 'Operations', 'Operations and Logistics Department'),
+(8, 'Research', 'Research and Development Department'),
+(9, 'CustomerService', 'Customer Service Department'),
+(10, 'QualityControl', 'Quality Control and Assurance Department');
+
+
+INSERT INTO Employees (ID, LastName, FirstName, DateOfBirth, Address, PhoneNumber, EmailAddress, HireDate, JobTitle, Salary, DepartmentID) VALUES
+(1, 'Smith', 'John', '1985-03-15', '123 Main St', '555-1234', 'john.smith@example.com', '2010-05-10', 'Manager', 75000.00, 2),
+(2, 'Johnson', 'Emily', '1990-07-22', '456 Elm St', '555-5678', 'emily.johnson@example.com', '2012-08-20', 'Software Engineer', 60000.00, 5),
+(3, 'Williams', 'Michael', '1988-01-10', '789 Oak St', '555-9876', 'michael.williams@example.com', '2015-03-05', 'Sales Associate', 45000.00, 3),
+(4, 'Brown', 'Jessica', '1992-11-03', '567 Pine St', '555-2345', 'jessica.brown@example.com', '2020-01-15', 'Marketing Specialist', 55000.00, 3),
+(5, 'Jones', 'Daniel', '1987-06-18', '890 Maple St', '555-3456', 'daniel.jones@example.com', '2011-09-08', 'IT Manager', 80000.00, 2),
+(6, 'Miller', 'Olivia', '1995-04-29', '234 Cedar St', '555-7890', 'olivia.miller@example.com', '2019-07-12', 'Data Analyst', 50000.00, 5),
+(7, 'Davis', 'William', '1989-09-14', '678 Birch St', '555-8765', 'william.davis@example.com', '2018-06-25', 'Financial Analyst', 60000.00, 4),
+(8, 'Garcia', 'Sophia', '1993-02-08', '345 Walnut St', '555-6543', 'sophia.garcia@example.com', '2016-11-30', 'Customer Support Specialist', 42000.00, 6),
+(9, 'Rodriguez', 'Noah', '1991-12-25', '789 Pine St', '555-4321', 'noah.rodriguez@example.com', '2014-04-18', 'Software Developer', 65000.00, 5),
+(10, 'Martinez', 'Isabella', '1986-08-17', '123 Oak St', '555-8765', 'isabella.martinez@example.com', '2013-03-22', 'HR Manager', 70000.00, 1),
+(11, 'Hernandez', 'Ethan', '1994-07-09', '456 Maple St', '555-2345', 'ethan.hernandez@example.com', '2017-10-10', 'Sales Manager', 72000.00, 3),
+(12, 'Lopez', 'Mia', '1987-05-02', '567 Cedar St', '555-7890', 'mia.lopez@example.com', '2018-08-05', 'Marketing Manager', 68000.00, 3),
+(13, 'Jackson', 'Liam', '1990-03-21', '234 Elm St', '555-5678', 'liam.jackson@example.com', '2015-12-02', 'Data Scientist', 75000.00, 5),
+(14, 'White', 'Ava', '1989-01-08', '678 Pine St', '555-9876', 'ava.white@example.com', '2019-07-15', 'Financial Manager', 80000.00, 4),
+(15, 'Harris', 'Noah', '1993-11-14', '345 Oak St', '555-2345', 'noah.harris@example.com', '2016-09-18', 'Customer Service Manager', 55000.00, 6),
+(16, 'Martin', 'Emma', '1991-04-27', '789 Cedar St', '555-8765', 'emma.martin@example.com', '2012-02-10', 'Software Engineer', 65000.00, 5),
+(17, 'Lee', 'Oliver', '1988-12-10', '123 Walnut St', '555-3456', 'oliver.lee@example.com', '2020-06-25', 'IT Specialist', 48000.00, 2),
+(18, 'Walker', 'Sophia', '1986-07-03', '456 Elm St', '555-6543', 'sophia.walker@example.com', '2017-08-15', 'HR Coordinator', 48000.00, 1),
+(19, 'Allen', 'Lucas', '1994-09-19', '567 Pine St', '555-1234', 'lucas.allen@example.com', '2019-03-30', 'Sales Associate', 42000.00, 3),
+(20, 'Young', 'Avery', '1992-02-12', '890 Oak St', '555-5678', 'avery.young@example.com', '2014-11-05', 'Marketing Assistant', 38000.00, 3);
+
+INSERT INTO Leaves (ID, EmployeeID, StartDate, EndDate, LeaveReason, LeaveStatus) VALUES
+(1, 2, '2023-02-10', '2023-02-15', 'Vacation', 'Approved'),
+(2, 7, '2023-04-05', '2023-04-07', 'Personal Reasons', 'Approved'),
+(3, 9, '2023-05-20', '2023-05-24', 'Family Emergency', 'Pending'),
+(4, 12, '2023-03-15', '2023-03-18', 'Medical Leave', 'Approved'),
+(5, 16, '2023-07-10', '2023-07-15', 'Vacation', 'Pending'),
+(6, 3, '2023-06-05', '2023-06-10', 'Personal Reasons', 'Approved'),
+(7, 8, '2023-08-01', '2023-08-02', 'Family Event', 'Approved'),
+(8, 11, '2023-09-10', '2023-09-12', 'Medical Appointment', 'Approved'),
+(9, 15, '2023-10-15', '2023-10-18', 'Vacation', 'Pending'),
+(10, 4, '2023-11-20', '2023-11-25', 'Personal Travel', 'Approved'),
+(11, 19, '2023-12-05', '2023-12-06', 'Family Occasion', 'Approved'),
+(12, 6, '2023-11-01', '2023-11-03', 'Medical Leave', 'Approved'),
+(13, 13, '2023-10-10', '2023-10-12', 'Vacation', 'Approved'),
+(14, 18, '2023-09-15', '2023-09-20', 'Personal Reasons', 'Pending'),
+(15, 20, '2023-08-05', '2023-08-07', 'Family Trip', 'Approved'),
+(16, 1, '2023-07-10', '2023-07-12', 'Medical Checkup', 'Approved'),
+(17, 5, '2023-06-15', '2023-06-20', 'Vacation', 'Pending'),
+(18, 10, '2023-05-01', '2023-05-05', 'Personal Event', 'Approved'),
+(19, 14, '2023-04-10', '2023-04-15', 'Family Leave', 'Approved'),
+(20, 17, '2023-03-20', '2023-03-22', 'Vacation', 'Pending');
 
