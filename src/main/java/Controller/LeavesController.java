@@ -1,44 +1,43 @@
 package Controller;
 
-package Controller;
 
 import Model.Leaves;
-import Repository.LeavesRepository;
+import Service.LeavesService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RestController
 @RequestMapping("/leaves")
+@RestController
 public class LeavesController {
-    private final LeavesRepository leavesRepository;
+    private final LeavesService leavesService;
 
-    public LeavesController(LeavesRepository leavesRepository) {
-        this.leavesRepository = leavesRepository;
+    public LeavesController(LeavesService leavesService) {
+        this.leavesService = leavesService;
     }
 
-    @GetMapping
+    @GetMapping("/allleaves")
     public List<Leaves> getAllLeaves() {
-        return leavesRepository.getAllLeaves();
+        return leavesService.getAllLeaves();
     }
 
     @GetMapping("/{id}")
     public Leaves getLeaveById(@PathVariable int id) {
-        return leavesRepository.getLeaveById(id);
+        return leavesService.getLeaveById(id);
     }
 
     @PostMapping
     public void createLeave(@RequestBody Leaves leave) {
-        leavesRepository.createLeave(leave);
+        leavesService.createLeave(leave);
     }
 
     @PutMapping("/{id}")
     public void updateLeave(@PathVariable int id, @RequestBody Leaves leave) {
-        leavesRepository.updateLeaves(id, leave);
+        leavesService.updateLeaves(id, leave);
     }
 
     @DeleteMapping("/{id}")
     public void deleteLeave(@PathVariable int id) {
-        leavesRepository.deleteLeave(id);
+        leavesService.deleteLeave(id);
     }
 }
 
