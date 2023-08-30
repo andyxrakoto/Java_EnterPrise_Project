@@ -1,44 +1,105 @@
-package Controller;
-package Controller;
+package Repository;
 
 import Model.Employees;
-import Repository.EmployeesRepository;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Repository;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("/employees")
-public class EmployeesController {
+@Repository
+public class EmployeesRepository implements EmployeesDAO {
 
-    private final EmployeesRepository employeesRepository;
+    private final Connection connection;
 
-    public EmployeesController(EmployeesRepository employeesRepository) {
-        this.employeesRepository = employeesRepository;
+    public EmployeesRepository(Connection connection) {
+        this.connection = connection;
     }
 
-    @GetMapping("/all")
-    public List<Employees> getAllEmployees(){
-        return employeesRepository.getAllEmployees();
+    public List<Employees> findAllEmployees() {
+        List<Employees> employees = new ArrayList<>();
+        String sql = "SELECT * FROM Employees";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Employees employee = new Employees();
+                employee.setId(resultSet.getInt("Id"));
+                employee.setLastName(resultSet.getString("LastName"));
+                employee.setFirstName(resultSet.getString("FirstName"));
+                employee.setDateOfBirth(resultSet.getDate("DateOfBirth"));
+                employee.setAddress(resultSet.getString("Address"));
+                employee.setPhoneNumber(resultSet.getString("PhoneNumber"));
+                employee.setEmailAddress(resultSet.getString("emailAddress"));
+                employee.setHireDate(resultSet.getDate("HireDate"));
+                employee.setJobTitle(resultSet.getString("JobTitle"));
+                employee.setSalary(resultSet.getFloat("Salary"));
+                employee.setDepartmentId(resultSet.getInt("DepartmentID"));
+                employees.add(employee);
+            }
+        } catch (SQLException e) {
+            System.out.println("NO EMPLOYESS MY G!!");
+        }
+        return employees;
     }
 
-    @GetMapping("/{id}")
-    public Employees getEmployeeById(@PathVariable int id) {
-        return employeesRepository.getEmployeeById(id);
+    public Employees findEmployeesById(int id) {
+        String sql = "SELECT * FROM Employees WHERE ID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Employees employee = new Employees();
+                employee.setId(resultSet.getInt("ID"));
+                employee.setLastName(resultSet.getString("LastName"));
+                employee.setFirstName(resultSet.getString("FirstName"));
+                employee.setJobTitle(resultSet.getString("JobTitle"));
+                return employee;
+            }
+        } catch (SQLException e) {
+            System.out.println("EMPLOYEE NOT FOUND");
+        }
+        return null;
     }
 
-    @PostMapping
-    public void createEmployee(@RequestBody Employees employee) {
-        employeesRepository.createEmployee(employee);
+    public void createEmployee(Employees employee) {
+        String sql = "INSERT INTO Employees (Id, LastName, FirstName) VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1,employee.getId());
+            statement.setString(2, employee.getLastName());
+            statement.setString(3, employee.getFirstName());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("EMPLOYEE NOT ADDED");
+        }
     }
 
-    @PutMapping("/{id}")
-    public void updateEmployee(@PathVariable int id, @RequestBody Employees employee) {
-        employeesRepository.updateEmployee(id, employee);
+    public void updateEmployee(int id, Employees employee) {
+        String sql = "UPDATE Employees SET LastName = ?, FirstName = ? WHERE ID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, employee.getLastName());
+            statement.setString(2, employee.getFirstName());
+            statement.setInt(3, id);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("EMPLOYEE NOT UPDATED");
+        }
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable int id) {
-        employeesRepository.deleteEmployee(id);
+    public void deleteEmployee(int id) {
+        String sql = "DELETE FROM Employees WHERE ID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("EMPLOYEE NOT DELETED");
+        }
     }
 }
-
