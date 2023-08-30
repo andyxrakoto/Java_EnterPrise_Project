@@ -1,42 +1,38 @@
 package Controller;
 
 import Model.Departments;
-import Repository.DepartmentsRepository;
+import Service.DepartmentsService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/departments")
-public class DepartmentsController {
+    public class DepartmentsController {
+        private final DepartmentsService departmentsService;
+        public DepartmentsController(DepartmentsService departmentsService) {
+            this.departmentsService = departmentsService;
+        }
+        @GetMapping
+        public List<Departments> getAllDepartments() {
+            return departmentsService.findAllDepartments();
+        }
 
-    private final DepartmentsRepository departmentsRepository;
+        @GetMapping("/{id}")
+        public Departments getDepartmentById(@PathVariable int id) {
+            return departmentsService.findDepartmentById(id);
+        }
+        @PostMapping
+        public void createDepartment(@RequestBody Departments department) {
+            departmentsService.createDepartment(department);
+        }
 
-    public DepartmentsController(DepartmentsRepository departmentsRepository) {
-        this.departmentsRepository = departmentsRepository;
+        @PutMapping("/{id}")
+        public void updateDepartment(@PathVariable int id, @RequestBody Departments department) {
+            departmentsService.updateDepartment(id, department);
+        }
+
+        @DeleteMapping("/{id}")
+        public void deleteDepartment(@PathVariable int id) {
+            departmentsService.deleteDepartment(id);
+        }
     }
-
-    @GetMapping
-    public List<Departments> getAllDepartments() {
-        return departmentsRepository.getAllDepartments();
-    }
-
-    @GetMapping("/{id}")
-    public Departments getDepartmentById(@PathVariable int id) {
-        return departmentsRepository.getDepartmentById(id);
-    }
-
-    @PostMapping
-    public void createDepartment(@RequestBody Departments department) {
-        departmentsRepository.createDepartment(department);
-    }
-
-    @PutMapping("/{id}")
-    public void updateDepartment(@PathVariable int id, @RequestBody Departments department) {
-        departmentsRepository.updateDepartment(id, department);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteDepartment(@PathVariable int id) {
-        departmentsRepository.deleteDepartment(id);
-    }
-}
